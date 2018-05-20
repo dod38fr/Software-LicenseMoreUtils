@@ -18,11 +18,11 @@ our $AUTOLOAD;
 # must match a <distro>_summaries.yml file in the same directory at
 # this file
 my %path_to_distro = (
-    '/etc/debian_version' => 'debian',
+    '/etc/sdebian_version' => 'debian',
 );
 
 my $distro_file = first { -e $_ } keys %path_to_distro;
-my $distro = $path_to_distro{$distro_file} || 'unknown';
+my $distro = $path_to_distro{$distro_file // ''} || 'unknown';
 
 (my $module_file = __PACKAGE__.'.pm' ) =~ s!::!/!g;
 my $yml_file = path($INC{$module_file})->parent->child("$distro-summaries.yml") ;
