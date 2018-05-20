@@ -12,13 +12,15 @@ use Text::Template;
 
 our $AUTOLOAD;
 
+# map location of distro file (like /etc/redhat_release) to distro.
+# must match a <distro>_summaries.yml file in the same directory at
+# this file
 my %path_to_distro = (
     '/etc/debian_version' => 'debian',
 );
 
 my $distro_file = first { -e $_ } keys %path_to_distro;
 my $distro = $path_to_distro{$distro_file} || 'unknown';
-
 
 (my $module_file = __PACKAGE__.'.pm' ) =~ s!::!/!g;
 my $yml_file = path($INC{$module_file})->parent->child("$distro-summaries.yml") ;
@@ -76,4 +78,35 @@ sub AUTOLOAD {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Software::LicenseMoreUtils::LicenseWithSummary - Software::License with a summary
+
+=head1 SYNOPSIS
+
+See L<Software::LicenseMoreUtils>. This class should be created with
+  L<Software::LicenseMoreUtils/new_license_with_summary>
+
+=head1 DESCRIPTION
+
+This module provides a wrapper around all C<Software::License::*> to add
+a summary.
+
+=head1 Methods
+
+This class provides all the methods of the underlying
+L<Software::License> object and the following methods.
+
+=head2 summary
+
+Returns the license summary, or an empty string.
+
+=head2 summary_or_text
+
+Returns the license summary or the full text of the license.
+
+
 

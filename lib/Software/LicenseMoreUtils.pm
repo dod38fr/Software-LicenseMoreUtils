@@ -13,24 +13,8 @@ use Software::LicenseMoreUtils::LicenseWithSummary;
 
 use base qw/Software::LicenseUtils/;
 
-=method new_from_short_name
- 
-   my $license_object = Software::LicenseUtils->new_from_short_name({
-      short_name => 'GPL-1',
-      holder => 'X. Ample'
-   }) ;
- 
-Create a new L<Software::License> object from the license specified
-with C<short_name>. Known short license names are C<GPL-*>, C<LGPL-*> ,
-C<Artistic> and C<Artistic-*>
-C<Artistic> and C<Artistic-*>. If the short name is not known, this
-method will try to create a license object with C<Software::License::> and
-the specified short name (e.g. C<Software::License::MIT> with
-C<< short_name => 'MIT' >> or C<Software::License::Apache_2_0> with
-C<< short_name => 'Apapche-2.0' >>).
- 
-=cut
-
+# a short name with '+' at the end of the short name implies an
+# "or later" clause.  i.e. GPL-1+ is "GPL-1 or any later version"
 my %more_short_names = (
     'Apache-1.1'   => 'Software::License::Apache_1_1',
     'Apache-2'     => 'Software::License::Apache_2_0',
@@ -97,3 +81,102 @@ sub new_license_with_summary {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Software::LicenseMoreUtils - More utilities for Software::License
+
+=head1 SYNOPSIS
+
+ use Software::LicenseMoreUtils;
+
+ my $lic = Software::LicenseMoreUtils->new_license_with_summary({
+    short_name => 'Apache-2.0',
+    holder => 'X. Ample'
+ });
+
+ # On Debian, return a license summary, returns license text elsewhere
+ my $text = $lic->summary_or_text;
+
+ # returns license full text
+ my $text = $lic->text;
+
+=head1 DESCRIPTION
+
+This module provides more utilities for L<Software::License> than
+L<Software::LicenseUtils>:
+
+=over
+
+=item *
+
+Method L</new_from_short_name> returns a
+L<Software::LicenseMoreUtils::LicenseWithSummary> object that provides all
+functionalities of C<Software::License::*> objects and a summary on
+some Linux distribution (see below).
+
+=item *
+
+L</new_from_short_name> accepts more short names than
+L<Software::LicenseUtils>
+
+=item *
+
+L<Software::License::LGPL-2> license is also provided. Even though
+license C<LGPL-2.1> is preferred over C<LGPL-2>, some software in
+Debian use C<LGPL-2>.
+
+=back
+
+=head1 License summary
+
+In some distribution like Debian, all packages should come with the
+full text of the licenses of the package software.
+
+To avoid many duplication of long license text, the text of the most
+common licenses are provided in C</usr/share/common-licenses>
+directory. Then the license text of a package need only to provide a
+summary of the license that refer to the location of the common
+license.
+
+All summaries are provided for Debian (so for Ubuntu). Other
+distributions are welcome to send pull request for their license
+summaries.
+
+=head1 Methods
+
+=head2 new_license_with_summary
+
+ my $license_object = Software::LicenseUtils->new_license_with_summary({
+      short_name => 'GPL-1',
+      holder => 'X. Ample'
+ }) ;
+
+Returns a new L<Software::LicenseUtils::LicenseWithSummary> object
+which is a L<Software::License> wrapped with a summary. This method
+accepts the same parameters aas L<new_from_short_name>.
+
+=head2 new_from_short_name
+
+ my $license_object = Software::LicenseUtils->new_from_short_name({
+      short_name => 'GPL-1',
+      holder => 'X. Ample'
+ }) ;
+
+Create a new L<Software::License> object from the license specified
+with C<short_name>. Known short license names are C<GPL-*>, C<LGPL-*> ,
+C<Artistic> and C<Artistic-*>
+C<Artistic> and C<Artistic-*>. If the short name is not known, this
+method will try to create a license object with C<Software::License::> and
+the specified short name (e.g. C<Software::License::MIT> with
+C<< short_name => 'MIT' >> or C<Software::License::Apache_2_0> with
+C<< short_name => 'Apapche-2.0' >>).
+
+Note: this method provides a plain vanilla L<Software::License> object
+without summary. Use L</new_license_with_summary> method if a summary
+is required
+
+=cut
+
