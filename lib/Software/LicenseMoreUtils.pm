@@ -9,7 +9,7 @@ use Carp;
 use Software::LicenseMoreUtils::LicenseWithSummary;
 
 
-# ABSTRACT: more little useful bits of code for licensey things
+# ABSTRACT: More utilities and a summary for Software::License
 
 use base qw/Software::LicenseUtils/;
 
@@ -83,10 +83,6 @@ sub new_license_with_summary {
 1;
 
 __END__
-
-=head1 NAME
-
-Software::LicenseMoreUtils - More utilities for Software::License
 
 =head1 SYNOPSIS
 

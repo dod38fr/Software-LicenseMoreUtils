@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 package Software::License::LGPL_2;
+
 use base 'Software::License';
 # ABSTRACT: GNU Library General Public License, Version 2
 

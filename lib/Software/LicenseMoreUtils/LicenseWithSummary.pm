@@ -1,5 +1,7 @@
 package Software::LicenseMoreUtils::LicenseWithSummary;
 
+# ABSTRACT: Software::License with a summary
+
 use strict;
 use warnings;
 use 5.10.1;
@@ -80,10 +82,6 @@ sub AUTOLOAD {
 1;
 
 __END__
-
-=head1 NAME
-
-Software::LicenseMoreUtils::LicenseWithSummary - Software::License with a summary
 
 =head1 SYNOPSIS
 
