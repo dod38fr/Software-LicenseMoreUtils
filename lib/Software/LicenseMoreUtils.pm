@@ -6,7 +6,7 @@ use 5.10.1;
 
 use Try::Tiny;
 use Carp;
-use Software::LicenseMoreUtils::License;
+use Software::LicenseMoreUtils::LicenseWithSummary;
 
 
 # ABSTRACT: more little useful bits of code for licensey things
@@ -89,7 +89,7 @@ sub new_license_with_summary {
     my $or_later = $short =~ /\+$/ ? 1 : 0;
     my $lic = $class->new_from_short_name($arg);
 
-    my $xlic = Software::LicenseMoreUtils::License->new({
+    my $xlic = Software::LicenseMoreUtils::LicenseWithSummary->new({
         license => $lic,
         or_later => $or_later
     });

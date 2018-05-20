@@ -12,7 +12,7 @@ my $gpl_lic = $class->new_license_with_summary({
     short_name => 'GPL-1',
     holder => 'X. Ample'
 });
-isa_ok($gpl_lic,'Software::LicenseMoreUtils::License',"license class");
+isa_ok($gpl_lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
 
 like(
     $gpl_lic->summary,
@@ -24,7 +24,7 @@ my $gpl2_lic = $class->new_license_with_summary({
     short_name => 'GPL-2',
     holder => 'X. Ample'
 });
-isa_ok($gpl2_lic,'Software::LicenseMoreUtils::License',"license class");
+isa_ok($gpl2_lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
 
 like(
     $gpl2_lic->summary,

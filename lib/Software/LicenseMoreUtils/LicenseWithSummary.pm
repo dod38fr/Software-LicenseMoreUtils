@@ -1,4 +1,4 @@
-package Software::LicenseMoreUtils::License;
+package Software::LicenseMoreUtils::LicenseWithSummary;
 
 use strict;
 use warnings;
