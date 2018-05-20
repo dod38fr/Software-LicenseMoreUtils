@@ -39,16 +39,16 @@ my %more_short_names = (
     'Artistic-2'   => 'Software::License::Artistic_2_0',
     'BSD-3-clause' => 'Software::License::BSD',
     'Expat'        => 'Software::License::MIT',
-    'LGPL-2  '     => [ 'Software::License::LGPL_2',   or_later => 0 ],
-    'LGPL-2+'      => [ 'Software::License::LGPL_2',   or_later => 1 ],
-    'LGPL-2.1+'    => [ 'Software::License::LGPL_2_1', or_later => 1 ],
-    'GPL-1+'       => [ 'Software::License::GPL_1',    or_later => 1 ],
-    'GPL-2+'       => [ 'Software::License::GPL_2',    or_later => 1 ],
-    'GPL-3+'       => [ 'Software::License::GPL_3',    or_later => 1 ],
-    'LGPL-2+'      => [ 'Software::License::LGPL_2',   or_later => 1 ],
-    'LGPL-2.1+'    => [ 'Software::License::LGPL_2_1', or_later => 1 ],
-    'LGPL-3+'      => [ 'Software::License::LGPL_3_0', or_later => 1 ],
-    'LGPL-3.0+'    => [ 'Software::License::LGPL_3_0', or_later => 1 ],
+    'LGPL-2  '     => 'Software::License::LGPL_2',
+    'LGPL-2+'      => 'Software::License::LGPL_2',
+    'LGPL-2.1+'    => 'Software::License::LGPL_2_1',
+    'GPL-1+'       => 'Software::License::GPL_1',
+    'GPL-2+'       => 'Software::License::GPL_2',
+    'GPL-3+'       => 'Software::License::GPL_3',
+    'LGPL-2+'      => 'Software::License::LGPL_2',
+    'LGPL-2.1+'    => 'Software::License::LGPL_2_1',
+    'LGPL-3+'      => 'Software::License::LGPL_3_0',
+    'LGPL-3.0+'    => 'Software::License::LGPL_3_0',
 );
 
 sub new_from_short_name {
@@ -64,8 +64,7 @@ sub new_from_short_name {
         $lic_obj = SUPER::new_from_short_name($arg);
     } catch {
         my $info = $more_short_names{$short} || "Software::License::$subclass";
-        my @infos = ref $info ? @$info : ($info);
-        my $lic_file = my $lic_class = shift @infos;
+        my $lic_file = my $lic_class = $info;
         $lic_file =~ s!::!/!g;
         try {
             require "$lic_file.pm";
@@ -86,8 +85,8 @@ sub new_extended_license {
 
     my $short = $arg->{short_name};
 
-    my $info = $more_short_names{$short};
-    my $or_later = ref $info ? $info->[2] : 0;
+    my $info = $more_short_names{$short} || '';
+    my $or_later = $short =~ /\+$/ ? 1 : 0;
     my $lic = $class->new_from_short_name($arg);
 
     my $xlic = Software::LicenseMoreUtils::License->new({
