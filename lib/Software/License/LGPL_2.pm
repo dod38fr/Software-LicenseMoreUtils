@@ -1,9 +1,6 @@
 use strict;
 use warnings;
 package Software::License::LGPL_2;
-{
-  $Software::License::LGPL_2::VERSION = '0.103004';
-}
 use base 'Software::License';
 # ABSTRACT: GNU Library General Public License, Version 2
 
@@ -21,32 +18,9 @@ sub meta2_name { 'lgpl_2' }
 
 Software::License::LGPL_2 - GNU Library General Public License, Version 2
 
-=head1 VERSION
-
-version 0.103004
-
-=head1 AUTHOR
-
-Ricardo Signes <rjbs@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2011 by Ricardo Signes.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
-
-=cut
 
 
 __DATA__
-__DEBIAN-SUMMARY__
-This program is free software; you can redistribute it and/or modify it
-under the terms of the GNU Library General Public License as published by the
-Free Software Foundation; version 2 of the License{{$or_later_clause}}.
-
-On Debian systems, the complete text of version 2 of the GNU Library
-General Public License can be found in `/usr/share/common-licenses/LGPL-2'.
 __LICENSE__
                   GNU LIBRARY GENERAL PUBLIC LICENSE
                        Version 2, June 1991
