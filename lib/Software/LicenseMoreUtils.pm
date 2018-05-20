@@ -78,7 +78,7 @@ sub new_from_short_name {
     return $lic_obj;
 }
 
-sub new_extended_license {
+sub new_license_with_summary {
     my ( $class, $arg ) = @_;
     croak "no license short name specified"
         unless defined $arg->{short_name};

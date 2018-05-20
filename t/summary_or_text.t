@@ -9,7 +9,7 @@ my $class = 'Software::LicenseMoreUtils';
 require_ok($class);
 
 foreach my $short (qw/GPL-2 LGPL-2 Apache_2_0 Artistic_1_0/) {
-    my $license = $class->new_extended_license({
+    my $license = $class->new_license_with_summary({
         short_name => $short,
         holder => 'X. Ample'
     });
@@ -23,7 +23,7 @@ my %no_summary = (
 );
 
 foreach my $short (sort keys %no_summary) {
-    my $license = $class->new_extended_license({
+    my $license = $class->new_license_with_summary({
         short_name => $short,
         holder => 'X. Ample'
     });

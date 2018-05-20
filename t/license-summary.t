@@ -8,7 +8,7 @@ my $class = 'Software::LicenseMoreUtils';
 require_ok($class);
 
 # test short_name retrieved by Software::LicenseUtils
-my $gpl_lic = $class->new_extended_license({
+my $gpl_lic = $class->new_license_with_summary({
     short_name => 'GPL-1',
     holder => 'X. Ample'
 });
@@ -20,7 +20,7 @@ like(
     "GPL-1 summary"
 );
 
-my $gpl2_lic = $class->new_extended_license({
+my $gpl2_lic = $class->new_license_with_summary({
     short_name => 'GPL-2',
     holder => 'X. Ample'
 });
@@ -33,7 +33,7 @@ like(
 );
 
 #test missing summary
-my $mit_lic = $class->new_extended_license({
+my $mit_lic = $class->new_license_with_summary({
     short_name => 'MIT',
     holder => 'X. Ample'
 });
@@ -42,7 +42,7 @@ is($mit_lic->summary, '', "Empty summary for MIT license");
 
 is($mit_lic->meta_name, 'mit', 'method forwarded to Software::License object');
 
-my $gpl_p_lic = $class->new_extended_license({
+my $gpl_p_lic = $class->new_license_with_summary({
     short_name => 'GPL-1+',
     holder => 'X. Ample'
 });
