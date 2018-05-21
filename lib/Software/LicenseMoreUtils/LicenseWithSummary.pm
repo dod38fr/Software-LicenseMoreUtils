@@ -42,6 +42,8 @@ sub new {
     bless $self, $class;
 }
 
+sub distribution { return $distro }
+
 sub summary {
     my $self = shift;
 
@@ -106,5 +108,11 @@ Returns the license summary, or an empty string.
 
 Returns the license summary or the full text of the license.
 
+=head2 distribution
+
+Returns the name of the Linux distribution found by this module. This
+method is intended for tests or debugging.
+
+=cut
 
 
