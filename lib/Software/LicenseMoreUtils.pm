@@ -101,8 +101,7 @@ __END__
 
 =head1 DESCRIPTION
 
-This module provides more utilities for L<Software::License> than
-L<Software::LicenseUtils>:
+This module provides more utilities for L<Software::License>:
 
 =over
 
@@ -152,7 +151,7 @@ summaries.
 
 Returns a new L<Software::LicenseUtils::LicenseWithSummary> object
 which is a L<Software::License> wrapped with a summary. This method
-accepts the same parameters aas L<new_from_short_name>.
+accepts the same parameters as L<new_from_short_name>.
 
 =head2 new_from_short_name
 
