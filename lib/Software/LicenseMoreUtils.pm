@@ -144,18 +144,18 @@ summaries.
 
 =head2 new_license_with_summary
 
- my $license_object = Software::LicenseUtils->new_license_with_summary({
+ my $license_object = Software::LicenseMoreUtils->new_license_with_summary({
       short_name => 'GPL-1',
       holder => 'X. Ample'
  }) ;
 
-Returns a new L<Software::LicenseUtils::LicenseWithSummary> object
+Returns a new L<Software::LicenseMoreUtils::LicenseWithSummary> object
 which is a L<Software::License> wrapped with a summary. This method
 accepts the same parameters as L<new_from_short_name>.
 
 =head2 new_from_short_name
 
- my $license_object = Software::LicenseUtils->new_from_short_name({
+ my $license_object = Software::LicenseMoreUtils->new_from_short_name({
       short_name => 'GPL-1',
       holder => 'X. Ample'
  }) ;
