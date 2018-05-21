@@ -14,7 +14,9 @@ foreach my $short (qw/GPL-2 LGPL-2 Apache_2_0 Artistic_1_0/) {
         holder => 'X. Ample'
     });
 
-    like($license->summary_or_text, qr/common-licenses/i, "$short summary found");
+    if ($license->distribution eq 'debian') {
+        like($license->summary_or_text, qr/common-licenses/i, "$short summary found");
+    }
 }
 
 my %no_summary = (

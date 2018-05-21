@@ -7,50 +7,31 @@ use Test::Exception;
 my $class = 'Software::LicenseMoreUtils';
 require_ok($class);
 
-# test short_name retrieved by Software::LicenseUtils
-my $gpl_lic = $class->new_license_with_summary({
-    short_name => 'GPL-1',
-    holder => 'X. Ample'
-});
-isa_ok($gpl_lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
-
-like(
-    $gpl_lic->summary,
-    qr!can be found in '/usr/share/common-licenses/GPL-1'!,
-    "GPL-1 summary"
+my %expected = (
+    'GPL-1' => qr!can be found in '/usr/share/common-licenses/GPL-1'!,
+    'GPL-2' => qr!can be found in '/usr/share/common-licenses/GPL-2'!,
+    'MIT'   => qr/^$/,
+    'GPL-1+' =>  qr!any later version!
 );
 
-my $gpl2_lic = $class->new_license_with_summary({
-    short_name => 'GPL-2',
-    holder => 'X. Ample'
-});
-isa_ok($gpl2_lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
+sub my_summary_test {
+    my $short_name = shift;
 
-like(
-    $gpl2_lic->summary,
-    qr!can be found in '/usr/share/common-licenses/GPL-2!,
-    "GPL-2 summary"
-);
+    # test short_name retrieved by Software::LicenseUtils
+    my $lic = $class->new_license_with_summary({
+        short_name => $short_name,
+        holder => 'X. Ample'
+    });
+    isa_ok($lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
 
-#test missing summary
-my $mit_lic = $class->new_license_with_summary({
-    short_name => 'MIT',
-    holder => 'X. Ample'
-});
+    my $expected_regexp = $lic->distribution eq 'debian' ? $expected{$short_name} : qr/^$/ ;
 
-is($mit_lic->summary, '', "Empty summary for MIT license");
+    like($lic->summary, $expected_regexp, "$short_name summary");
+}
 
-is($mit_lic->meta_name, 'mit', 'method forwarded to Software::License object');
+foreach my $short_name (sort keys %expected) {
+    subtest "testing $short_name summary", \&my_summary_test, $short_name;
+}
 
-my $gpl_p_lic = $class->new_license_with_summary({
-    short_name => 'GPL-1+',
-    holder => 'X. Ample'
-});
-
-like(
-    $gpl_p_lic->summary,
-    qr!any later version!,
-    "GPL-1 or later summary"
-);
 
 done_testing;
