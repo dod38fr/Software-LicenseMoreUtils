@@ -39,7 +39,7 @@ has the same parameters as the
 [new_from_short_name](https://metacpan.org/pod/Software::LicenseUtils#new_from_short_name)
 provided by
 [Software::License](https://metacpan.org/pod/Software::License). It
-returns Returns a new
+returns a new
 [Software::LicenseUtils::LicenseWithSummary](https://metacpan.org/pod/Software::LicenseUtils::LicenseWithSummary)
 object which has the same methods as
 [Software::License](https://metacpan.org/pod/Software::License).
