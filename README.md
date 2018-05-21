@@ -17,25 +17,28 @@ This Perl modules provides some utilities on top of [Software::License](https://
 
 ## Example ##
 
-    use Software::LicenseMoreUtils;
+```perl
+use Software::LicenseMoreUtils;
    
-    my $lic = Software::LicenseMoreUtils->new_license_with_summary({
-       short_name => 'Apache-2.0', # accepts also Apache-2 Apache_2_0
-       holder => 'X. Ample'
-    });
-   
-    # returns a license summary on Debian, returns license text elsewhere
-    my $text = $lic->summary_or_text;
-   
-    # returns license full text
-    my $text = $lic->text;
+ my $lic = Software::LicenseMoreUtils->new_license_with_summary({
+   short_name => 'Apache-2.0', # accepts also Apache-2 Apache_2_0
+   holder => 'X. Ample'
+});
 
+# returns a license summary on Debian, returns license text elsewhere
+my $text = $lic->summary_or_text;
+
+# returns license full text
+my $text = $lic->text;
+```
 
 ## Compatibility ##
 
 [new_from_short_name](http://search.cpan.org/~ddumont/Software-LicenseMoreUtils-0.001/lib/Software/LicenseMoreUtils.pm#new_from_short_name)
-has the same parameters as
-[new_from_short_name](https://metacpan.org/pod/Software::LicenseUtils#new_from_short_name). It
+has the same parameters as the
+[new_from_short_name](https://metacpan.org/pod/Software::LicenseUtils#new_from_short_name)
+provided by
+[Software::License](https://metacpan.org/pod/Software::License). It
 returns Returns a new
 [Software::LicenseUtils::LicenseWithSummary](https://metacpan.org/pod/Software::LicenseUtils::LicenseWithSummary)
 object which has the same methods as
