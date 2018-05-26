@@ -34,13 +34,13 @@ my $text = $lic->text;
 
 ## Compatibility ##
 
-[new_from_short_name](http://search.cpan.org/~ddumont/Software-LicenseMoreUtils-0.001/lib/Software/LicenseMoreUtils.pm#new_from_short_name)
+[new_from_short_name](http://search.cpan.org/perldoc?Software%3A%3ALicenseMoreUtils%3A%3ALicenseWithSummary#new_from_short_name)
 has the same parameters as the
 [new_from_short_name](https://metacpan.org/pod/Software::LicenseUtils#new_from_short_name)
 provided by
 [Software::License](https://metacpan.org/pod/Software::License). It
 returns a new
-[Software::LicenseUtils::LicenseWithSummary](https://metacpan.org/pod/Software::LicenseUtils::LicenseWithSummary)
+[Software::LicenseMoreUtils::LicenseWithSummary](https://metacpan.org/pod/Software::LicenseMoreUtils::LicenseWithSummary)
 object which has the same methods as
 [Software::License](https://metacpan.org/pod/Software::License).
 
