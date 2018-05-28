@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+0.004 2018-05-28
+
+  * move LGPL_2 license in Software::LicenseMoreUtils
+
 0.003 2018-05-26
 
   * add MPL_1_1 and MPL_2_0 summaries (Debian #865472)
