@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-package Software::License::LGPL_2;
+package Software::LicenseMoreUtils::LGPL_2;
 
 use base 'Software::License';
 # ABSTRACT: GNU Library General Public License, Version 2
@@ -17,7 +17,7 @@ sub meta2_name { 'lgpl_2' }
 
 =head1 NAME
 
-Software::License::LGPL_2 - GNU Library General Public License, Version 2
+Software::LicenseMoreUtils::LGPL_2 - GNU Library General Public License, Version 2
 
 
 
