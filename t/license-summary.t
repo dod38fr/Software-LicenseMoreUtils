@@ -3,6 +3,7 @@ use warnings;
 
 use Test::More;
 use Test::Exception;
+use Path::Tiny;
 
 my $class = 'Software::LicenseMoreUtils';
 require_ok($class);
@@ -23,6 +24,10 @@ sub my_summary_test {
         holder => 'X. Ample'
     });
     isa_ok($lic,'Software::LicenseMoreUtils::LicenseWithSummary',"license class");
+
+    if (path('/etc/debian_version')->is_file) {
+        is($lic->distribution, 'debian', "Debian distro was identified");
+    }
 
     my $expected_regexp = $lic->distribution eq 'debian' ? $expected{$short_name} : qr/^$/ ;
 
