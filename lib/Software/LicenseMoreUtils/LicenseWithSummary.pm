@@ -93,7 +93,7 @@ __END__
 =head1 SYNOPSIS
 
 See L<Software::LicenseMoreUtils>. This class should be created with
-  L<Software::LicenseMoreUtils/new_license_with_summary>
+  L<Software::LicenseMoreUtils/new_from_short_name>
 
 =head1 DESCRIPTION
 

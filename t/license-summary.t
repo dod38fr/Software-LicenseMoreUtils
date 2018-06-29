@@ -19,7 +19,7 @@ sub my_summary_test {
     my $short_name = shift;
 
     # test short_name retrieved by Software::LicenseUtils
-    my $lic = $class->new_license_with_summary({
+    my $lic = $class->new_from_short_name({
         short_name => $short_name,
         holder => 'X. Ample'
     });
