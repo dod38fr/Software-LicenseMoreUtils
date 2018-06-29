@@ -63,6 +63,11 @@ sub summary {
     );
 }
 
+sub license_class {
+    my $self = shift;
+    return ref($self->{license});
+}
+
 sub debian_text {
     my $self = shift;
     carp "debian_text is deprecated, please use summary_or_text";
@@ -112,6 +117,11 @@ Returns the license summary or the full text of the license.
 
 Returns the name of the Linux distribution found by this module. This
 method is intended for tests or debugging.
+
+=head2 license_class
+
+Returns the Perl class name of the underlying L<Software::License> object.
+E.g. C<Software::License::AGPL_3>
 
 =cut
 
