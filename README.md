@@ -14,6 +14,7 @@ This Perl modules provides some utilities on top of [Software::License](https://
 * Provides a
   [LGPL-2](http://search.cpan.org/perldoc?Software%3A%3ALicense%3A%3ALGPL_2)
   object. LGPL-2 is deprecated but sometimes found in Debian packages.
+* GPL summaries support the "or later" clause often used with GPL licenses
 
 ## Example ##
 
