@@ -18,7 +18,7 @@ our $AUTOLOAD;
 # must match a <distro>_summaries.yml file in the same directory at
 # this file
 my %path_to_distro = (
-    '/etc/sdebian_version' => 'debian',
+    '/etc/debian_version' => 'debian',
 );
 
 my $distro_file = first { -e $_ } keys %path_to_distro;
