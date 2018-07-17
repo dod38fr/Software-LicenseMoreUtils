@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+1.002 2018-07-17
+
+  * Fix LGPL2.1 summary
+
 1.001 2018-07-06
 
   * add MPL short names (Debian #865472)
