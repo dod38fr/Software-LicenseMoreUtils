@@ -71,12 +71,14 @@ sub license_class {
 sub debian_text {
     my $self = shift;
     carp "debian_text is deprecated, please use summary_or_text";
-    return $self->summary || $self->fulltext;
+    return $self->summary_or_text;
 }
 
 sub summary_or_text {
     my $self = shift;
-    return $self->summary || $self->fulltext;
+    return join("\n",  grep { $_ } ($self->notice, $self->summary))
+        if length $self->summary;
+    return $self->fulltext;
 }
 
 sub AUTOLOAD {
