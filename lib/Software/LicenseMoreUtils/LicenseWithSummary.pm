@@ -113,7 +113,9 @@ Returns the license summary, or an empty string.
 
 =head2 summary_or_text
 
-Returns the license summary or the full text of the license.
+Returns the license summary or the full text of the license. Like
+L<Software::License/fulltext>, this method returns also the copyright
+notice (if available).
 
 =head2 distribution
 
