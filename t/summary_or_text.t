@@ -18,6 +18,9 @@ subtest 'with summary' => sub {
         if ($license->distribution eq 'debian') {
             like($license->summary_or_text, qr/common-licenses/i, "$short summary found");
         }
+        else {
+            unlike($license->summary_or_text, qr/common-licenses/i, "$short summary not found");
+        }
     }
 };
 
