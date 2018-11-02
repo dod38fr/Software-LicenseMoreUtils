@@ -15,8 +15,8 @@ use Text::Template;
 our $AUTOLOAD;
 
 # map location of distro file (like /etc/redhat_release) to distro.
-# must match a <distro>_summaries.yml file in the same directory at
-# this file
+# must match a <distro>_summaries.yml file in the directory containing
+# this Perl module file
 my %path_to_distro = (
     '/etc/debian_version' => 'debian',
 );
