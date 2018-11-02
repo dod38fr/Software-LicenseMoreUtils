@@ -19,7 +19,7 @@ sub meta2_name { 'lgpl_2' }
 
 Software::LicenseMoreUtils::LGPL_2 - GNU Library General Public License, Version 2
 
-
+=cut
 
 __DATA__
 __LICENSE__
