@@ -98,7 +98,7 @@ __END__
  use Software::LicenseMoreUtils;
 
  my $lic = Software::LicenseMoreUtils->new_from_short_name({
-    short_name => 'Apache-2.0',
+    short_name => 'Apache-2.0', # or GPL-2+, Artistic-2 ...
     holder => 'X. Ample'
  });
 
@@ -125,6 +125,12 @@ some Linux distribution (see below).
 
 L</new_from_short_name> accepts more short names than
 L<Software::LicenseUtils>
+
+=item *
+
+L</new_from_short_name> accepts "or any later version" variant of GPL
+licenses. When a short name like C<GPL-3+> is used, the license
+summary contains "or (at your option) any later version" statement.
 
 =item *
 
@@ -159,16 +165,20 @@ summaries.
  }) ;
 
 Returns a new L<Software::LicenseMoreUtils::LicenseWithSummary> object
-which is a L<Software::License> wrapped with a summary.
+which is a L<Software::License> wrapped with a summary. This is a
+drop-in replacement for the L<Software::License> object as all methods
+are delegated to the underlying L<Software::License> object.
 
-The new L<Software::License> object is created from the license specified
-with C<short_name>. Known short license names are C<GPL-*>, C<LGPL-*> ,
-C<Artistic> and C<Artistic-*>
-C<Artistic> and C<Artistic-*>. If the short name is not known, this
-method will try to create a license object with C<Software::License::> and
-the specified short name (e.g. C<Software::License::MIT> with
-C<< short_name => 'MIT' >> or C<Software::License::Apache_2_0> with
-C<< short_name => 'Apapche-2.0' >>).
+Known short license names are C<GPL-*>, C<LGPL-*> , and their "or
+later version" variant C<GPL-*+>, C<LGPL-*+> C<Artistic> and
+C<Artistic-*>. Unlike vanilla L<Software::License>, this module
+accepts license name with "-" (e.g. C<GPL-2>) along with "_"
+(e.g. "C<GPL_2>")
+
+If the short name is not known, this method tries to create a license
+object with C<Software::License> and the specified short name
+(e.g. C<Software::License::MIT> with C<< short_name => 'MIT' >> or
+C<Software::License::Apache_2_0> with C<< short_name => 'Apache-2.0' >>).
 
 =cut
 
