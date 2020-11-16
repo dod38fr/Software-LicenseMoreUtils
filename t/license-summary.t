@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use 5.10.1;
 
-use Test::More;
+use Test::More 1.001005; # subtest with args
 use Test::Exception;
 use Path::Tiny;
 
