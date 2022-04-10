@@ -39,7 +39,7 @@ sub new {
         or_later => $args->{or_later},
     };
 
-    bless $self, $class;
+    return bless $self, $class;
 }
 
 sub distribution { return $distro }
@@ -82,10 +82,15 @@ sub summary_or_text {
 }
 
 sub AUTOLOAD {
-    my $self = shift;
+    my ($self, @args) = @_;
     my $lic = $self->{license};
     my ($sub) = ($AUTOLOAD =~ /(\w+)$/);
-    return $lic->$sub(@_) if ($lic and $sub ne 'DESTROY');
+    if ($lic and $sub ne 'DESTROY') {
+        return $lic->$sub(@args);
+    }
+    else {
+        return;
+    }
 }
 
 1;
