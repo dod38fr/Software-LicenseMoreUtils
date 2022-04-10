@@ -191,7 +191,10 @@ Known short license names are C<GPL-*>, C<LGPL-*> , and their "or
 later version" variant C<GPL-*+>, C<LGPL-*+> C<Artistic> and
 C<Artistic-*>. Unlike vanilla L<Software::License>, this module
 accepts license name with "-" (e.g. C<GPL-2>) along with "_"
-(e.g. "C<GPL_2>")
+(e.g. "C<GPL_2>").
+
+SPDX v3 identifiers can also be used as short names. I.e. short names
+like C<GPL-2.0-only> or C<LGPL-2.1-or-later> are supported.
 
 If the short name is not known, this method tries to create a license
 object with C<Software::License> and the specified short name
