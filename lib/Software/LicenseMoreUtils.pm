@@ -95,7 +95,7 @@ sub new_from_short_name {
     my $short = $arg->{short_name};
 
     my $info = $more_short_names{$short} || '';
-    my $or_later = $short =~ /\+$/ ? 1 : 0;
+    my $or_later = $short =~ /(\+|-or-later)$/ ? 1 : 0;
     my $lic = $class->_create_license($arg);
 
     my $xlic = Software::LicenseMoreUtils::LicenseWithSummary->new({
