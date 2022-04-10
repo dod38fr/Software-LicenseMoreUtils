@@ -9,6 +9,7 @@ sub name { return 'The GNU Library General Public License, Version 2, June 1991'
 sub url  { return 'http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html' }
 sub meta_name  { return 'lgpl' }
 sub meta2_name { return 'lgpl_2' }
+sub spdx_expression  { return 'LGPL-2.0-only' }
 
 1;
 
