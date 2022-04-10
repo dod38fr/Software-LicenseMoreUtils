@@ -14,6 +14,10 @@ my @tests = (
     # test fall back
     [ 'MIT' =>  'Software::License::MIT' ],
     [ 'Apache-2.0' => 'Software::License::Apache_2_0' ],
+
+    # SPDX identifiers handled by Software::LicenseUtils
+    [ 'Zlib' => 'Software::License::Zlib'],
+    [ 'PostgreSQL' => 'Software::License::PostgreSQL']
 );
 
 foreach my $test (@tests) {
