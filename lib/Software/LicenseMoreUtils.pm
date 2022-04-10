@@ -37,6 +37,21 @@ my %more_short_names = (
     'MPL-1.0'      => 'Software::License::Mozilla_1_0',
     'MPL-1.1'      => 'Software::License::Mozilla_1_1',
     'MPL-2.0'      => 'Software::License::Mozilla_2_0',
+
+    # Some SPDX v3 identifiers
+    'LGPL-2.0-only'     => 'Software::LicenseMoreUtils::LGPL_2',
+    'LGPL-2.0-or-later' => 'Software::LicenseMoreUtils::LGPL_2',
+    'LGPL-2.1-only'     => 'Software::License::LGPL_2_1',
+    'LGPL-2.1-or-later' => 'Software::License::LGPL_2_1',
+    'LGPL-3.0-only'     => 'Software::License::LGPL_3_0',
+    'LGPL-3.0-or-later' => 'Software::License::LGPL_3_0',
+
+    'GPL-1.0-only'      => 'Software::LicenseMoreUtils::GPL_1',
+    'GPL-1.0-or-later'  => 'Software::LicenseMoreUtils::GPL_1',
+    'GPL-2.0-only'      => 'Software::License::GPL_2',
+    'GPL-2.0-or-later'  => 'Software::License::GPL_2',
+    'GPL-3.0-only'      => 'Software::License::GPL_3',
+    'GPL-3.0-or-later'  => 'Software::License::GPL_3',
 );
 
 sub _create_license {
