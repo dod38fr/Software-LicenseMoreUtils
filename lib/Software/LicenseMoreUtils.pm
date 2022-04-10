@@ -55,6 +55,7 @@ sub _create_license {
         my $lic_file = my $lic_class = $info;
         $lic_file =~ s!::!/!g;
         try {
+            ## no critic (Modules::RequireBarewordIncludes)
             require "$lic_file.pm";
         } catch {
             Carp::croak "Unknow license with short name $short ($_)";
