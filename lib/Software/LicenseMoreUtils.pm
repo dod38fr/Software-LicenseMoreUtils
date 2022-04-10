@@ -39,18 +39,12 @@ my %more_short_names = (
     'MPL-2.0'      => 'Software::License::Mozilla_2_0',
 
     # Some SPDX v3 identifiers
-    'LGPL-2.0-only'     => 'Software::LicenseMoreUtils::LGPL_2',
     'LGPL-2.0-or-later' => 'Software::LicenseMoreUtils::LGPL_2',
-    'LGPL-2.1-only'     => 'Software::License::LGPL_2_1',
     'LGPL-2.1-or-later' => 'Software::License::LGPL_2_1',
-    'LGPL-3.0-only'     => 'Software::License::LGPL_3_0',
     'LGPL-3.0-or-later' => 'Software::License::LGPL_3_0',
 
-    'GPL-1.0-only'      => 'Software::LicenseMoreUtils::GPL_1',
     'GPL-1.0-or-later'  => 'Software::LicenseMoreUtils::GPL_1',
-    'GPL-2.0-only'      => 'Software::License::GPL_2',
     'GPL-2.0-or-later'  => 'Software::License::GPL_2',
-    'GPL-3.0-only'      => 'Software::License::GPL_3',
     'GPL-3.0-or-later'  => 'Software::License::GPL_3',
 );
 
@@ -59,25 +53,33 @@ sub _create_license {
     croak "no license short name specified"
           unless defined $arg->{short_name};
 
-    my $subclass = my $short = $arg->{short_name};
-    $subclass =~ s/[\-.]/_/g;
-
     my $lic_obj;
     try {
         $lic_obj = SUPER::new_from_short_name($arg);
-    } catch {
-        my $info = $more_short_names{$short} || "Software::License::$subclass";
-        my $lic_file = my $lic_class = $info;
-        $lic_file =~ s!::!/!g;
-        try {
-            ## no critic (Modules::RequireBarewordIncludes)
-            require "$lic_file.pm";
-        } catch {
-            Carp::croak "Unknow license with short name $short ($_)";
-        } ;
-        delete $arg->{short_name};
-        $lic_obj = $lic_class->new( { %$arg } );
     };
+
+    return $lic_obj if $lic_obj;
+
+    try {
+        $lic_obj = SUPER::new_from_spdx_expression($arg);
+    };
+
+    return $lic_obj if $lic_obj;
+
+    my $subclass = my $short = $arg->{short_name};
+    $subclass =~ s/[\-.]/_/g;
+
+    my $info = $more_short_names{$short} || "Software::License::$subclass";
+    my $lic_file = my $lic_class = $info;
+    $lic_file =~ s!::!/!g;
+    try {
+        ## no critic (Modules::RequireBarewordIncludes)
+        require "$lic_file.pm";
+    } catch {
+        Carp::croak "Unknow license with short name $short ($_)";
+    } ;
+    delete $arg->{short_name};
+    $lic_obj = $lic_class->new( { %$arg } );
 
     return $lic_obj;
 }
