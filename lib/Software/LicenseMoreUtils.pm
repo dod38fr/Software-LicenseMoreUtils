@@ -7,7 +7,7 @@ use 5.10.1;
 use Try::Tiny;
 use Carp;
 use Software::LicenseMoreUtils::LicenseWithSummary;
-
+use Software::License 0.103014;
 
 # ABSTRACT: More utilities and a summary for Software::License
 
