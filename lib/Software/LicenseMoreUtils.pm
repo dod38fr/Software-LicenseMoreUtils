@@ -25,7 +25,7 @@ my %more_short_names = (
     'Expat'        => 'Software::License::MIT',
     'LGPL-2'       => 'Software::LicenseMoreUtils::LGPL_2',
     'LGPL_2'       => 'Software::LicenseMoreUtils::LGPL_2',
-    'LGPL-2.1'     => 'Software::License::LGPL_2_1',
+    'LGPL-3'       => 'Software::License::LGPL_3_0',
     'GPL-1+'       => 'Software::License::GPL_1',
     'GPL-2+'       => 'Software::License::GPL_2',
     'GPL-3+'       => 'Software::License::GPL_3',
@@ -67,6 +67,7 @@ sub _create_license {
     return $lic_obj if $lic_obj;
 
     my $subclass = my $short = $arg->{short_name};
+    $subclass =~ s/-(only|or-later)$//;
     $subclass =~ s/[\-.]/_/g;
 
     my $info = $more_short_names{$short} || "Software::License::$subclass";
