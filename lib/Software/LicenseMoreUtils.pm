@@ -30,14 +30,12 @@ my %more_short_names = (
     'MPL-1.1'      => 'Software::License::Mozilla_1_1',
     'MPL-2.0'      => 'Software::License::Mozilla_2_0',
 
-    # Some SPDX v3 identifiers
-    'LGPL-2.0-or-later' => 'Software::LicenseMoreUtils::LGPL_2',
-    'LGPL-2.1-or-later' => 'Software::License::LGPL_2_1',
-    'LGPL-3.0-or-later' => 'Software::License::LGPL_3_0',
+    # GPL SPDX identifiers have another convention for GPL version number
+    'LGPL-2.0' => 'Software::LicenseMoreUtils::LGPL_2',
 
-    'GPL-1.0-or-later'  => 'Software::LicenseMoreUtils::GPL_1',
-    'GPL-2.0-or-later'  => 'Software::License::GPL_2',
-    'GPL-3.0-or-later'  => 'Software::License::GPL_3',
+    'GPL-1.0'  => 'Software::License::GPL_1',
+    'GPL-2.0'  => 'Software::License::GPL_2',
+    'GPL-3.0'  => 'Software::License::GPL_3',
 );
 
 sub _create_license {
@@ -58,9 +56,11 @@ sub _create_license {
 
     return $lic_obj if $lic_obj;
 
-    my $subclass = my $short = $arg->{short_name};
-    $subclass =~ s/-(only|or-later)$//;
-    $subclass =~ s/\+$//;
+    my $short = $arg->{short_name};
+    $short =~ s/-(only|or-later)$//;
+    $short =~ s/\+$//;
+
+    my $subclass = $short;
     $subclass =~ s/[\-.]/_/g;
 
     my $info = $more_short_names{$short} || "Software::License::$subclass";
