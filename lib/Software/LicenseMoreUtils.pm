@@ -16,7 +16,6 @@ use base qw/Software::LicenseUtils/;
 # a short name with '+' at the end of the short name implies an
 # "or later" clause.  i.e. GPL-1+ is "GPL-1 or any later version"
 my %more_short_names = (
-    'Apache-1.1'   => 'Software::License::Apache_1_1',
     'Apache-2'     => 'Software::License::Apache_2_0',
     'Artistic'     => 'Software::License::Artistic_1_0',
     'Artistic-1'   => 'Software::License::Artistic_1_0',
