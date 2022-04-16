@@ -19,6 +19,7 @@ my @tests = (
     # test fall back
     [ 'MIT'        =>  'Software::License::MIT' ],
     [ 'Apache-2.0' => 'Software::License::Apache_2_0' ],
+    [ 'Apache-1.1' => 'Software::License::Apache_1_1' ],
 
     # SPDX identifiers handled by Software::LicenseUtils
     [ 'LGPL-3.0-only' => 'Software::License::LGPL_3_0' ],
