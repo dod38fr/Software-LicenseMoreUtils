@@ -9,26 +9,26 @@ require_ok($class);
 
 my @tests = (
     # test short_name retrieved by Software::LicenseUtils
-    [ 'GPL-1'    => 'Software::License::GPL_1' ],
-    [ 'LGPL-2'   => 'Software::LicenseMoreUtils::LGPL_2' ],
-    [ 'LGPL_2'   => 'Software::LicenseMoreUtils::LGPL_2' ],
-    [ 'LGPL-2.1' => 'Software::License::LGPL_2_1'],
-    [ 'LGPL-3'   => 'Software::License::LGPL_3_0' ],
-    [ 'LGPL-3.0' => 'Software::License::LGPL_3_0' ],
+    'GPL-1'    => 'Software::License::GPL_1',
+    'LGPL-2'   => 'Software::LicenseMoreUtils::LGPL_2',
+    'LGPL_2'   => 'Software::LicenseMoreUtils::LGPL_2',
+    'LGPL-2.1' => 'Software::License::LGPL_2_1',
+    'LGPL-3'   => 'Software::License::LGPL_3_0',
+    'LGPL-3.0' => 'Software::License::LGPL_3_0',
 
     # test fall back
-    [ 'MIT'        =>  'Software::License::MIT' ],
-    [ 'Apache-2.0' => 'Software::License::Apache_2_0' ],
-    [ 'Apache-1.1' => 'Software::License::Apache_1_1' ],
+    'MIT'        =>  'Software::License::MIT',
+    'Apache-2.0' => 'Software::License::Apache_2_0',
+    'Apache-1.1' => 'Software::License::Apache_1_1',
 
     # SPDX identifiers handled by Software::LicenseUtils
-    [ 'LGPL-3.0-only' => 'Software::License::LGPL_3_0' ],
-    [ 'Zlib'          => 'Software::License::Zlib'],
-    [ 'PostgreSQL'    => 'Software::License::PostgreSQL']
+    'LGPL-3.0-only' => 'Software::License::LGPL_3_0',
+    'Zlib'          => 'Software::License::Zlib',
+    'PostgreSQL'    => 'Software::License::PostgreSQL'
 );
 
-foreach my $test (@tests) {
-    my ($short_name, $lic_class) = @$test;
+while (@tests) {
+    my ($short_name, $lic_class) = splice @tests, 0, 2;
 
     my $lic = $class->new_from_short_name({
         short_name => $short_name,
