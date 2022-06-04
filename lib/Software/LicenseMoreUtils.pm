@@ -72,7 +72,8 @@ sub _create_license {
         Carp::croak "Unknow license with short name $short ($_)";
     } ;
     delete $arg->{short_name};
-    $lic_obj = $lic_class->new( { %$arg } );
+    # the holder default value fits well with BSD license text
+    $lic_obj = $lic_class->new( { holder => 'the copyright holder', %$arg } );
 
     return $lic_obj;
 }
@@ -95,7 +96,8 @@ sub new_from_short_name {
 
     my $xlic = Software::LicenseMoreUtils::LicenseWithSummary->new({
         license => $lic,
-        or_later => $or_later
+        or_later => $or_later,
+        holder => $arg->{holder},
     });
     return $xlic;
 }

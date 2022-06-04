@@ -37,6 +37,7 @@ sub new {
     my $self = {
         license => $args->{license},
         or_later => $args->{or_later},
+        holder => $args->{holder},
     };
 
     return bless $self, $class;
@@ -75,10 +76,21 @@ sub debian_text {
 }
 
 sub summary_or_text {
-    my $self = shift;
-    return join("\n",  grep { $_ } ($self->notice, $self->summary))
-        if length $self->summary;
-    return $self->fulltext;
+    my ($self) = @_;
+    my $text;
+    if (length $self->summary and $self->{holder}) {
+        $text = join("\n",  grep { $_ } ($self->notice, $self->summary));
+    }
+    elsif (length $self->summary) {
+        $text = $self->summary;
+    }
+    elsif ($self->{holder}) {
+        $text =  $self->fulltext;
+    }
+    else {
+        $text = $self->license;
+    }
+    return $text;
 }
 
 sub AUTOLOAD {
