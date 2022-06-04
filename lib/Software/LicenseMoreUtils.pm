@@ -112,10 +112,11 @@ __END__
 
  my $lic = Software::LicenseMoreUtils->new_from_short_name({
     short_name => 'Apache-2.0', # or GPL-2+, Artistic-2 ...
-    holder => 'X. Ample'
+    holder => 'X. Ample' # unlike Software::License, holder is optional
  });
 
  # On Debian, return a license summary, returns license text elsewhere
+ # with ot without copyright notice, depending if holder is set.
  my $text = $lic->summary_or_text;
 
  # returns license full text
@@ -164,7 +165,7 @@ directory. Then the license text of a package need only to provide a
 summary of the license that refer to the location of the common
 license.
 
-All summaries are provided for Debian (so for Ubuntu). Other
+All summaries are provided for Debian (so, for Ubuntu). Other
 distributions are welcome to send pull request for their license
 summaries.
 
@@ -173,9 +174,14 @@ summaries.
 =head2 new_from_short_name
 
  my $license_object = Software::LicenseMoreUtils->new_from_short_name({
-      short_name => 'GPL-1',
-      holder => 'X. Ample'
+      short_name => 'GPL-1', # mandatory
+      holder => 'X. Ample' # optional
  }) ;
+
+Unlike L<Software::License>, the C<Holder> parameter is optional. When
+set, L<Software::LicenseMoreUtils::LicenseWithSummary/summary_or_text>
+returns a copyright notice with the text of the summary of the
+license.
 
 Returns a new L<Software::LicenseMoreUtils::LicenseWithSummary> object
 which is a L<Software::License> wrapped with a summary. This is a
