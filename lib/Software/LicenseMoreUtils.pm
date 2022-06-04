@@ -116,7 +116,7 @@ __END__
  });
 
  # On Debian, return a license summary, returns license text elsewhere
- # with ot without copyright notice, depending if holder is set.
+ # with or without copyright notice, depending if holder is set.
  my $text = $lic->summary_or_text;
 
  # returns license full text
