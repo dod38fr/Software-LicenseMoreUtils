@@ -22,7 +22,10 @@ subtest 'with summary' => sub {
         else {
             unlike($text, qr/common-licenses/i, "$short summary not found");
         }
-        like($text, qr/X. Ample/, "found copyright holder");
+        like($text, qr/X. Ample/, "found copyright notice");
+
+        my $license2 = $class->new_from_short_name({short_name => $short});
+        unlike($license2->summary_or_text, qr/^This software is Copyright \(c\)/, "no copyright notice");
     }
 };
 
@@ -40,7 +43,10 @@ subtest 'without summary' => sub {
 
         my $text = $license->summary_or_text;
         like($text, $no_summary{$short}, "$short license text found");
-        like($text, qr/X. Ample/, "found copyright holder");
+        like($text, qr/X. Ample/, "found copyright notice");
+
+        my $license2 = $class->new_from_short_name({short_name => $short});
+        unlike($license2->summary_or_text, qr/^This software is Copyright \(c\)/, "no copyright notice");
     }
 };
 
